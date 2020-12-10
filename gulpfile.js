@@ -1,0 +1,84 @@
+const gulp = require("gulp");
+const webpack = require("webpack-stream");
+const sass = require("gulp-sass");
+const browserSync = require('browser-sync');
+
+const dist = "C:/OpenServer/domains/proj/admin";
+// Здесь должен быть путь к папке admin в вашем проекте на локальном сервере
+
+gulp.task("copy-html", () => {
+    return gulp.src("./app/src/index.html")
+                .pipe(gulp.dest(dist))
+                .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task("build-js", () => {
+    return gulp.src("./app/src/main.js")
+                .pipe(webpack({
+                    mode: 'development',
+                    output: {
+                        filename: 'script.js'
+                    },
+                    watch: false,
+                    devtool: "source-map",
+                    module: {
+                        rules: [
+                          {
+                            test: /\.m?js$/,
+                            exclude: /(node_modules|bower_components)/,
+                            use: {
+                              loader: 'babel-loader',
+                              options: {
+                                presets: [['@babel/preset-env', {
+                                    debug: true,
+                                    corejs: 3,
+                                    useBuiltIns: "usage"
+                                }],
+                                 "@babel/react"]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                }))
+                .pipe(gulp.dest(dist))
+                .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task("build-sass", () => {
+    return gulp.src("./app/scss/style.scss")
+                .pipe(sass().on('error', sass.logError))
+                .pipe(gulp.dest(dist))
+                .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task("copy-api", () => {
+    return gulp.src("./app/api/**/*.*")
+                .pipe(gulp.dest(dist + "/api"))
+                .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task("copy-assets", () => {
+    return gulp.src("./app/assets/**/*.*")
+                .pipe(gulp.dest(dist + "/assets"))
+                .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('browser-sync', () => {
+  browserSync.init({
+     proxy: "proj",
+     notify: false, 
+  });
+});
+
+gulp.task("watch", () => {
+    gulp.watch("./app/src/index.html", gulp.parallel("copy-html"));
+    gulp.watch("./app/assets/**/*.*", gulp.parallel("copy-assets"));
+    gulp.watch("./app/api/**/*.*", gulp.parallel("copy-api"));
+    gulp.watch("./app/scss/**/*.scss", gulp.parallel("build-sass"));
+    gulp.watch("./app/src/**/*.js", gulp.parallel("build-js"));
+});
+
+gulp.task("build", gulp.parallel("copy-html", "copy-assets", "copy-api", "build-sass", "build-js", 'browser-sync'));
+
+gulp.task("default", gulp.parallel("watch", "build"));
