@@ -559,8 +559,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Editor; });
-/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers_iframeLoader_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/iframeLoader.js */ "./app/src/helpers/iframeLoader.js");
 /* harmony import */ var _helpers_iframeLoader_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_helpers_iframeLoader_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -987,7 +987,7 @@ const Panel = () => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "uk-button uk-button-primary uk-margin-small-right",
     "uk-toggle": "target: #modal-open"
-  }, "\u041E\u0442\u043A\u0440\u044B\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "\u0421\u0442\u0440\u0430\u043D\u0438\u0446\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "uk-button uk-button-primary uk-margin-small-right",
     "uk-toggle": "target: #modal-save"
   }, "\u041E\u043F\u0443\u0431\u043B\u0438\u043A\u043E\u0432\u0430\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -997,7 +997,7 @@ const Panel = () => {
     className: "uk-button uk-button-default uk-margin-small-right",
     "uk-toggle": "target: #modal-backup"
   }, "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "uk-button uk-button-danger",
+    className: "uk-button uk-button-default",
     "uk-toggle": "target: #modal-logout"
   }, "\u0412\u044B\u0445\u043E\u0434"));
 };
@@ -1058,8 +1058,8 @@ const Spinner = ({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DOMHelper; });
-/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_0__);
 
 class DOMHelper {
   static parseStrToDOM(str) {
@@ -1455,6 +1455,9 @@ axios.all = function all(promises) {
   return Promise.all(promises);
 };
 axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
+
+// Expose isAxiosError
+axios.isAxiosError = __webpack_require__(/*! ./helpers/isAxiosError */ "./node_modules/axios/lib/helpers/isAxiosError.js");
 
 module.exports = axios;
 
@@ -2460,6 +2463,29 @@ module.exports = function isAbsoluteURL(url) {
 
 /***/ }),
 
+/***/ "./node_modules/axios/lib/helpers/isAxiosError.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Determines whether the payload is an error thrown by Axios
+ *
+ * @param {*} payload The value to test
+ * @returns {boolean} True if the payload is an error thrown by Axios, otherwise false
+ */
+module.exports = function isAxiosError(payload) {
+  return (typeof payload === 'object') && (payload.isAxiosError === true);
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
 /*!***********************************************************!*\
   !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
@@ -3043,7 +3069,7 @@ module.exports = {
 var charAt = __webpack_require__(/*! ../internals/string-multibyte */ "./node_modules/core-js/internals/string-multibyte.js").charAt;
 
 // `AdvanceStringIndex` abstract operation
-// https://tc39.github.io/ecma262/#sec-advancestringindex
+// https://tc39.es/ecma262/#sec-advancestringindex
 module.exports = function (S, index, unicode) {
   return index + (unicode ? charAt(S, index).length : 1);
 };
@@ -3102,10 +3128,10 @@ var createMethod = function (IS_INCLUDES) {
 
 module.exports = {
   // `Array.prototype.includes` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.includes
+  // https://tc39.es/ecma262/#sec-array.prototype.includes
   includes: createMethod(true),
   // `Array.prototype.indexOf` method
-  // https://tc39.github.io/ecma262/#sec-array.prototype.indexof
+  // https://tc39.es/ecma262/#sec-array.prototype.indexof
   indexOf: createMethod(false)
 };
 
@@ -3202,7 +3228,7 @@ module.exports = function (bitmap, value) {
 
 var fails = __webpack_require__(/*! ../internals/fails */ "./node_modules/core-js/internals/fails.js");
 
-// Thank's IE8 for his funny defineProperty
+// Detect IE8's incomplete defineProperty implementation
 module.exports = !fails(function () {
   return Object.defineProperty({}, 1, { get: function () { return 7; } })[1] != 7;
 });
@@ -3489,6 +3515,57 @@ var aFunction = function (variable) {
 module.exports = function (namespace, method) {
   return arguments.length < 2 ? aFunction(path[namespace]) || aFunction(global[namespace])
     : path[namespace] && path[namespace][method] || global[namespace] && global[namespace][method];
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/internals/get-substitution.js":
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/internals/get-substitution.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
+
+var floor = Math.floor;
+var replace = ''.replace;
+var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d\d?|<[^>]*>)/g;
+var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d\d?)/g;
+
+// https://tc39.es/ecma262/#sec-getsubstitution
+module.exports = function (matched, str, position, captures, namedCaptures, replacement) {
+  var tailPos = position + matched.length;
+  var m = captures.length;
+  var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
+  if (namedCaptures !== undefined) {
+    namedCaptures = toObject(namedCaptures);
+    symbols = SUBSTITUTION_SYMBOLS;
+  }
+  return replace.call(replacement, symbols, function (match, ch) {
+    var capture;
+    switch (ch.charAt(0)) {
+      case '$': return '$';
+      case '&': return matched;
+      case '`': return str.slice(0, position);
+      case "'": return str.slice(tailPos);
+      case '<':
+        capture = namedCaptures[ch.slice(1, -1)];
+        break;
+      default: // \d\d?
+        var n = +ch;
+        if (n === 0) return match;
+        if (n > m) {
+          var f = floor(n / 10);
+          if (f === 0) return match;
+          if (f <= m) return captures[f - 1] === undefined ? ch.charAt(1) : captures[f - 1] + ch.charAt(1);
+          return match;
+        }
+        capture = captures[n - 1];
+    }
+    return capture === undefined ? '' : capture;
+  });
 };
 
 
@@ -3798,7 +3875,7 @@ var toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ "./node_m
 var nativeDefineProperty = Object.defineProperty;
 
 // `Object.defineProperty` method
-// https://tc39.github.io/ecma262/#sec-object.defineproperty
+// https://tc39.es/ecma262/#sec-object.defineproperty
 exports.f = DESCRIPTORS ? nativeDefineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPrimitive(P, true);
@@ -3832,7 +3909,7 @@ var IE8_DOM_DEFINE = __webpack_require__(/*! ../internals/ie8-dom-define */ "./n
 var nativeGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 
 // `Object.getOwnPropertyDescriptor` method
-// https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptor
+// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
 exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
   O = toIndexedObject(O);
   P = toPrimitive(P, true);
@@ -3858,7 +3935,7 @@ var enumBugKeys = __webpack_require__(/*! ../internals/enum-bug-keys */ "./node_
 var hiddenKeys = enumBugKeys.concat('length', 'prototype');
 
 // `Object.getOwnPropertyNames` method
-// https://tc39.github.io/ecma262/#sec-object.getownpropertynames
+// https://tc39.es/ecma262/#sec-object.getownpropertynames
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return internalObjectKeys(O, hiddenKeys);
 };
@@ -3922,7 +3999,7 @@ var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
 var NASHORN_BUG = getOwnPropertyDescriptor && !nativePropertyIsEnumerable.call({ 1: 2 }, 1);
 
 // `Object.prototype.propertyIsEnumerable` method implementation
-// https://tc39.github.io/ecma262/#sec-object.prototype.propertyisenumerable
+// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
 exports.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
   var descriptor = getOwnPropertyDescriptor(this, V);
   return !!descriptor && descriptor.enumerable;
@@ -4029,7 +4106,7 @@ var classof = __webpack_require__(/*! ./classof-raw */ "./node_modules/core-js/i
 var regexpExec = __webpack_require__(/*! ./regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
 
 // `RegExpExec` abstract operation
-// https://tc39.github.io/ecma262/#sec-regexpexec
+// https://tc39.es/ecma262/#sec-regexpexec
 module.exports = function (R, S) {
   var exec = R.exec;
   if (typeof exec === 'function') {
@@ -4162,7 +4239,7 @@ module.exports = patchedExec;
 var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
 
 // `RegExp.prototype.flags` getter implementation
-// https://tc39.github.io/ecma262/#sec-get-regexp.prototype.flags
+// https://tc39.es/ecma262/#sec-get-regexp.prototype.flags
 module.exports = function () {
   var that = anObject(this);
   var result = '';
@@ -4221,7 +4298,7 @@ exports.BROKEN_CARET = fails(function () {
 /***/ (function(module, exports) {
 
 // `RequireObjectCoercible` abstract operation
-// https://tc39.github.io/ecma262/#sec-requireobjectcoercible
+// https://tc39.es/ecma262/#sec-requireobjectcoercible
 module.exports = function (it) {
   if (it == undefined) throw TypeError("Can't call method on " + it);
   return it;
@@ -4301,9 +4378,9 @@ var store = __webpack_require__(/*! ../internals/shared-store */ "./node_modules
 (module.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.8.1',
+  version: '3.8.2',
   mode: IS_PURE ? 'pure' : 'global',
-  copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 });
 
 
@@ -4337,7 +4414,7 @@ var createMethod = function (CONVERT_TO_STRING) {
 
 module.exports = {
   // `String.prototype.codePointAt` method
-  // https://tc39.github.io/ecma262/#sec-string.prototype.codepointat
+  // https://tc39.es/ecma262/#sec-string.prototype.codepointat
   codeAt: createMethod(false),
   // `String.prototype.at` method
   // https://github.com/mathiasbynens/String.prototype.at
@@ -4399,7 +4476,7 @@ var ceil = Math.ceil;
 var floor = Math.floor;
 
 // `ToInteger` abstract operation
-// https://tc39.github.io/ecma262/#sec-tointeger
+// https://tc39.es/ecma262/#sec-tointeger
 module.exports = function (argument) {
   return isNaN(argument = +argument) ? 0 : (argument > 0 ? floor : ceil)(argument);
 };
@@ -4419,7 +4496,7 @@ var toInteger = __webpack_require__(/*! ../internals/to-integer */ "./node_modul
 var min = Math.min;
 
 // `ToLength` abstract operation
-// https://tc39.github.io/ecma262/#sec-tolength
+// https://tc39.es/ecma262/#sec-tolength
 module.exports = function (argument) {
   return argument > 0 ? min(toInteger(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
 };
@@ -4437,7 +4514,7 @@ module.exports = function (argument) {
 var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
 
 // `ToObject` abstract operation
-// https://tc39.github.io/ecma262/#sec-toobject
+// https://tc39.es/ecma262/#sec-toobject
 module.exports = function (argument) {
   return Object(requireObjectCoercible(argument));
 };
@@ -4455,7 +4532,7 @@ module.exports = function (argument) {
 var isObject = __webpack_require__(/*! ../internals/is-object */ "./node_modules/core-js/internals/is-object.js");
 
 // `ToPrimitive` abstract operation
-// https://tc39.github.io/ecma262/#sec-toprimitive
+// https://tc39.es/ecma262/#sec-toprimitive
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function (input, PREFERRED_STRING) {
@@ -4545,6 +4622,8 @@ module.exports = function (name) {
 var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
 var exec = __webpack_require__(/*! ../internals/regexp-exec */ "./node_modules/core-js/internals/regexp-exec.js");
 
+// `RegExp.prototype.exec` method
+// https://tc39.es/ecma262/#sec-regexp.prototype.exec
 $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
   exec: exec
 });
@@ -4563,18 +4642,15 @@ $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
 
 var fixRegExpWellKnownSymbolLogic = __webpack_require__(/*! ../internals/fix-regexp-well-known-symbol-logic */ "./node_modules/core-js/internals/fix-regexp-well-known-symbol-logic.js");
 var anObject = __webpack_require__(/*! ../internals/an-object */ "./node_modules/core-js/internals/an-object.js");
-var toObject = __webpack_require__(/*! ../internals/to-object */ "./node_modules/core-js/internals/to-object.js");
 var toLength = __webpack_require__(/*! ../internals/to-length */ "./node_modules/core-js/internals/to-length.js");
 var toInteger = __webpack_require__(/*! ../internals/to-integer */ "./node_modules/core-js/internals/to-integer.js");
 var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "./node_modules/core-js/internals/require-object-coercible.js");
 var advanceStringIndex = __webpack_require__(/*! ../internals/advance-string-index */ "./node_modules/core-js/internals/advance-string-index.js");
+var getSubstitution = __webpack_require__(/*! ../internals/get-substitution */ "./node_modules/core-js/internals/get-substitution.js");
 var regExpExec = __webpack_require__(/*! ../internals/regexp-exec-abstract */ "./node_modules/core-js/internals/regexp-exec-abstract.js");
 
 var max = Math.max;
 var min = Math.min;
-var floor = Math.floor;
-var SUBSTITUTION_SYMBOLS = /\$([$&'`]|\d\d?|<[^>]*>)/g;
-var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d\d?)/g;
 
 var maybeToString = function (it) {
   return it === undefined ? it : String(it);
@@ -4588,7 +4664,7 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
 
   return [
     // `String.prototype.replace` method
-    // https://tc39.github.io/ecma262/#sec-string.prototype.replace
+    // https://tc39.es/ecma262/#sec-string.prototype.replace
     function replace(searchValue, replaceValue) {
       var O = requireObjectCoercible(this);
       var replacer = searchValue == undefined ? undefined : searchValue[REPLACE];
@@ -4597,7 +4673,7 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
         : nativeReplace.call(String(O), searchValue, replaceValue);
     },
     // `RegExp.prototype[@@replace]` method
-    // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@replace
+    // https://tc39.es/ecma262/#sec-regexp.prototype-@@replace
     function (regexp, replaceValue) {
       if (
         (!REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE && REPLACE_KEEPS_$0) ||
@@ -4660,40 +4736,6 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
       return accumulatedResult + S.slice(nextSourcePosition);
     }
   ];
-
-  // https://tc39.github.io/ecma262/#sec-getsubstitution
-  function getSubstitution(matched, str, position, captures, namedCaptures, replacement) {
-    var tailPos = position + matched.length;
-    var m = captures.length;
-    var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
-    if (namedCaptures !== undefined) {
-      namedCaptures = toObject(namedCaptures);
-      symbols = SUBSTITUTION_SYMBOLS;
-    }
-    return nativeReplace.call(replacement, symbols, function (match, ch) {
-      var capture;
-      switch (ch.charAt(0)) {
-        case '$': return '$';
-        case '&': return matched;
-        case '`': return str.slice(0, position);
-        case "'": return str.slice(tailPos);
-        case '<':
-          capture = namedCaptures[ch.slice(1, -1)];
-          break;
-        default: // \d\d?
-          var n = +ch;
-          if (n === 0) return match;
-          if (n > m) {
-            var f = floor(n / 10);
-            if (f === 0) return match;
-            if (f <= m) return captures[f - 1] === undefined ? ch.charAt(1) : captures[f - 1] + ch.charAt(1);
-            return match;
-          }
-          capture = captures[n - 1];
-      }
-      return capture === undefined ? '' : capture;
-    });
-  }
 });
 
 
@@ -34928,7 +34970,7 @@ if (false) {} else {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/*! UIkit 3.6.7 | https://www.getuikit.com | (c) 2014 - 2021 YOOtheme | MIT License */
+/*! UIkit 3.6.10 | https://www.getuikit.com | (c) 2014 - 2021 YOOtheme | MIT License */
 
 (function (global, factory) {
      true ? module.exports = factory() :
@@ -36230,12 +36272,12 @@ if (false) {} else {
         for (var n = 0; n < nodes.length; n++) {
             var list = nodes[n].classList;
             for (var i = 0; i < cls.length; i++) {
-                if (!isBoolean(force)) {
+                if (isUndefined(force)) {
                     list.toggle(cls[i]);
                 } else if (supports.Force) {
-                    list.toggle(cls[i], force);
+                    list.toggle(cls[i], !!force);
                 } else {
-                    list[!list.contains(cls[i]) ? 'add' : 'remove'](cls[i]);
+                    list[force ? 'add' : 'remove'](cls[i]);
                 }
             }
         }
@@ -36506,7 +36548,8 @@ if (false) {} else {
                 addClass(element, animation, animationPrefix + (out ? 'leave' : 'enter'));
 
                 if (startsWith(animation, animationPrefix)) {
-                    addClass(element, origin && ("uk-transform-origin-" + origin), out && (animationPrefix + "reverse"));
+                    origin && addClass(element, ("uk-transform-origin-" + origin));
+                    out && addClass(element, (animationPrefix + "reverse"));
                 }
 
             }); }
@@ -36733,7 +36776,7 @@ if (false) {} else {
         if ( recursion === void 0 ) recursion = 1;
 
         runTasks(fastdom.reads);
-        runTasks(fastdom.writes.splice(0, fastdom.writes.length));
+        runTasks(fastdom.writes.splice(0));
 
         fastdom.scheduled = false;
 
@@ -36761,7 +36804,11 @@ if (false) {} else {
     function runTasks(tasks) {
         var task;
         while ((task = tasks.shift())) {
-            task();
+            try {
+                task();
+            } catch (e) {
+                console.error(e);
+            }
         }
     }
 
@@ -37181,10 +37228,10 @@ if (false) {} else {
 
             var scrollTop = scrollElement.scrollTop;
             var scrollHeight = scrollElement.scrollHeight;
-            var viewport = getViewport(scrollElement);
-            var maxScroll = scrollHeight - height(viewport);
+            var clientHeight = scrollElement.clientHeight;
+            var maxScroll = scrollHeight - clientHeight;
 
-            var top = Math.ceil(position(parents[i - 1] || element, viewport).top - offsetBy) + diff + scrollTop;
+            var top = Math.ceil(position(parents[i - 1] || element, getViewport(scrollElement)).top - offsetBy) + diff + scrollTop;
 
             if (top > maxScroll) {
                 diff = top - maxScroll;
@@ -37241,18 +37288,17 @@ if (false) {} else {
 
         var ref = scrollParents(element, /auto|scroll/);
         var scrollElement = ref[0];
+        var clientHeight = scrollElement.clientHeight;
         var scrollHeight = scrollElement.scrollHeight;
         var scrollTop = scrollElement.scrollTop;
-        var viewport = getViewport(scrollElement);
-        var viewportHeight = height(viewport);
         var viewportTop = offsetPosition(element)[0] - scrollTop - offsetPosition(scrollElement)[0];
-        var viewportDist = Math.min(viewportHeight, viewportTop + scrollTop);
+        var viewportDist = Math.min(clientHeight, viewportTop + scrollTop);
 
         var top = viewportTop - viewportDist;
         var dist = Math.min(
-            height(element) + heightOffset + viewportDist,
+            element.offsetHeight + heightOffset + viewportDist,
             scrollHeight - (viewportTop + scrollTop),
-            scrollHeight - viewportHeight
+            scrollHeight - clientHeight
         );
 
         return clamp(-1 * top / dist);
@@ -37272,8 +37318,8 @@ if (false) {} else {
             ancestors = ancestors.slice(fixedIndex);
         }
 
-        return [scrollEl].concat(ancestors.filter(function (parent) { return overflowRe.test(css(parent, 'overflow')) && (!scrollable || parent.scrollHeight > height(parent)); }
-        )).reverse();
+        return [scrollEl].concat(ancestors.filter(function (parent) { return overflowRe.test(css(parent, 'overflow')) && (!scrollable || parent.scrollHeight > parent.clientHeight); })
+        ).reverse();
     }
 
     function getViewport(scrollElement) {
@@ -37320,7 +37366,7 @@ if (false) {} else {
 
         if (flip) {
 
-            var boundaries = scrollParents(target).map(getViewport);
+            var boundaries = scrollParents(element).map(getViewport);
 
             if (boundary && includes(boundaries, boundary)) {
                 boundaries.unshift(boundary);
@@ -37682,7 +37728,6 @@ if (false) {} else {
 
             this._data = {};
             this._computeds = {};
-            this._frame = 0;
 
             this._initProps();
 
@@ -37708,6 +37753,7 @@ if (false) {} else {
             this._callHook('disconnected');
 
             this._connected = false;
+            delete this._watch;
 
         };
 
@@ -37716,81 +37762,40 @@ if (false) {} else {
             if ( e === void 0 ) e = 'update';
 
 
-            var type = e.type || e;
-
-            if (~['update', 'resize'].indexOf(type)) {
-                this._callWatches();
-            }
-
-            var updates = this.$options.update;
-
-            if (!updates) {
+            if (!this._connected) {
                 return;
             }
 
-            var frame = this._frame = ++this._frame % 64;
+            if (e === 'update' || e === 'resize') {
+                this._callWatches();
+            }
 
-            var loop = function ( i ) {
-                var ref = updates[i];
-                var read = ref.read;
-                var write = ref.write;
-                var events = ref.events;
+            if (!this.$options.update) {
+                return;
+            }
 
-                if (type !== 'update' && (!events || !~events.indexOf(type))) {
-                    return;
-                }
+            if (!this._updates) {
+                this._updates = new Set();
+                fastdom.read(function () {
+                    runUpdates.call(this$1, this$1._updates);
+                    delete this$1._updates;
+                });
+            }
 
-                var cancel = (void 0);
-                if (read) {
-                    fastdom.read(function () {
-
-                        if (!this$1._connected || frame !== this$1._frame) {
-                            return;
-                        }
-
-                        var result = read.call(this$1, this$1._data, type);
-
-                        if (result === false) {
-                            cancel = true;
-                        } else if (isPlainObject(result)) {
-                            assign(this$1._data, result);
-                        }
-                    });
-                }
-
-                if (write) {
-                    fastdom.write(function () {
-
-                        if (cancel || !this$1._connected || frame !== this$1._frame) {
-                            return;
-                        }
-
-                        write.call(this$1, this$1._data, type);
-                    });
-                }
-            };
-
-            for (var i = 0; i < updates.length; i++) loop( i );
+            this._updates.add(e.type || e);
         };
 
         UIkit.prototype._callWatches = function () {
             var this$1 = this;
 
 
-            var ref = this;
-            var _watch = ref._watch;
-
-            if (_watch) {
+            if (this._watch) {
                 return;
             }
 
             var initital = !hasOwn(this, '_watch');
 
             this._watch = fastdom.read(function () {
-
-                if (!this$1._connected) {
-                    return;
-                }
 
                 var ref = this$1;
                 var computed = ref.$options.computed;
@@ -37821,6 +37826,40 @@ if (false) {} else {
 
         };
 
+        function runUpdates(types) {
+            var this$1 = this;
+
+
+            var updates = this.$options.update;
+
+            var loop = function ( i ) {
+                var ref = updates[i];
+                var read = ref.read;
+                var write = ref.write;
+                var events = ref.events;
+
+                if (!types.has('update') && (!events || !events.some(function (type) { return types.has(type); }))) {
+                    return;
+                }
+
+                var result = (void 0);
+                if (read) {
+
+                    result = read.call(this$1, this$1._data, types);
+
+                    if (result && isPlainObject(result)) {
+                        assign(this$1._data, result);
+                    }
+                }
+
+                if (write && result !== false) {
+                    fastdom.write(function () { return write.call(this$1, this$1._data, types); });
+                }
+
+            };
+
+            for (var i = 0; i < updates.length; i++) loop( i );
+        }
     }
 
     function stateAPI (UIkit) {
@@ -38383,7 +38422,7 @@ if (false) {} else {
     UIkit.data = '__uikit__';
     UIkit.prefix = 'uk-';
     UIkit.options = {};
-    UIkit.version = '3.6.7';
+    UIkit.version = '3.6.10';
 
     globalAPI(UIkit);
     hooksAPI(UIkit);
@@ -38661,9 +38700,9 @@ if (false) {} else {
             isToggled: function(el) {
                 if ( el === void 0 ) el = this.$el;
 
-                return hasClass(this.clsEnter)
+                return hasClass(el, this.clsEnter)
                     ? true
-                    : hasClass(this.clsLeave)
+                    : hasClass(el, this.clsLeave)
                         ? false
                         : this.cls
                             ? hasClass(el, this.cls.split(' ')[0])
@@ -40244,8 +40283,12 @@ if (false) {} else {
             }
 
             this.svg = this.getSvg().then(function (el) {
-                this$1.applyAttributes(el);
-                return this$1.svgEl = insertSVG(el, this$1.$el);
+
+                if (this$1._connected) {
+                    this$1.applyAttributes(el);
+                    return this$1.svgEl = insertSVG(el, this$1.$el);
+                }
+
             }, noop);
 
         },
@@ -40258,9 +40301,15 @@ if (false) {} else {
                 this.$el.hidden = false;
             }
 
-            if (this.svg) {
-                this.svg.then(function (svg) { return (!this$1._connected || svg !== this$1.svgEl) && remove(svg); }, noop);
-            }
+            var ref = this;
+            var icon = ref.icon;
+            var src = ref.src;
+
+            this.svg.then(function (svg) {
+                if (!this$1._connected || src !== this$1.src || icon !== this$1.icon) {
+                    remove(svg);
+                }
+            });
 
             this.svg = this.svgEl = null;
 
@@ -40609,7 +40658,7 @@ if (false) {} else {
         connected: function() {
             var this$1 = this;
 
-            this.svg.then(function (svg) { return this$1.ratio !== 1 && css($('circle', svg), 'strokeWidth', 1 / this$1.ratio); }, noop);
+            this.svg.then(function (svg) { return svg && this$1.ratio !== 1 && css($('circle', svg), 'strokeWidth', 1 / this$1.ratio); });
         }
 
     };
@@ -42330,10 +42379,10 @@ if (false) {} else {
 
                     var ref$1 = scrollParents(this.targets, /auto|scroll/, true);
                     var scrollElement = ref$1[0];
+                    var clientHeight = scrollElement.clientHeight;
                     var scrollTop = scrollElement.scrollTop;
                     var scrollHeight = scrollElement.scrollHeight;
-                    var viewport = getViewport(scrollElement);
-                    var max = scrollHeight - height(viewport);
+                    var max = scrollHeight - clientHeight;
                     var active = false;
 
                     if (scrollTop === max) {
@@ -42341,7 +42390,7 @@ if (false) {} else {
                     } else {
 
                         this.targets.every(function (el, i) {
-                            if (position(el, viewport).top - this$1.offset <= 0) {
+                            if (position(el, getViewport(scrollElement)).top - this$1.offset <= 0) {
                                 active = i;
                                 return true;
                             }
@@ -42511,7 +42560,7 @@ if (false) {} else {
 
             {
 
-                read: function(ref, type) {
+                read: function(ref, types) {
                     var height = ref.height;
 
 
@@ -42521,7 +42570,7 @@ if (false) {} else {
                         return false;
                     }
 
-                    if (this.isActive && type !== 'update') {
+                    if (this.isActive && types.has('resize')) {
                         this.hide();
                         height = this.$el.offsetHeight;
                         this.show();
@@ -42582,11 +42631,12 @@ if (false) {} else {
                     };
                 },
 
-                write: function(data, type) {
+                write: function(data, types) {
                     var this$1 = this;
 
 
                     var now = Date.now();
+                    var isScrollUpdate = types.has('scroll');
                     var initTimestamp = data.initTimestamp; if ( initTimestamp === void 0 ) initTimestamp = 0;
                     var dir = data.dir;
                     var lastDir = data.lastDir;
@@ -42596,7 +42646,7 @@ if (false) {} else {
 
                     data.lastScroll = scroll;
 
-                    if (scroll < 0 || scroll === lastScroll && type === 'scroll' || this.showOnUp && type !== 'scroll' && !this.isFixed) {
+                    if (scroll < 0 || scroll === lastScroll && isScrollUpdate || this.showOnUp && !isScrollUpdate && !this.isFixed) {
                         return;
                     }
 
@@ -42613,7 +42663,7 @@ if (false) {} else {
 
                     if (this.inactive
                         || scroll < this.top
-                        || this.showOnUp && (scroll <= this.top || dir === 'down' && type === 'scroll' || dir === 'up' && !this.isFixed && scroll <= this.bottomOffset)
+                        || this.showOnUp && (scroll <= this.top || dir === 'down' && isScrollUpdate || dir === 'up' && !this.isFixed && scroll <= this.bottomOffset)
                     ) {
 
                         if (!this.isFixed) {
@@ -42875,7 +42925,7 @@ if (false) {} else {
                 this.connects.forEach(function (ref) {
                         var children = ref.children;
 
-                        return this$1.toggleElement(toNodes(children).filter(function (child, i) { return i !== next && this$1.isToggled(child); }
+                        return this$1.toggleElement(toNodes(children).filter(function (child) { return hasClass(child, this$1.cls); }
                     ), false, prev >= 0).then(function () { return this$1.toggleElement(children[next], true, prev >= 0); }
                     );
                 }
@@ -43341,7 +43391,7 @@ if (false) {} else {
 
             css(children(target), {opacity: 0});
 
-            // Two frames to ensure UIkit updates propagated
+            // Ensure UIkit updates have propagated
             return new Promise(function (resolve) { return requestAnimationFrame(function () {
 
                     var nodes = children(target);
@@ -43401,57 +43451,58 @@ if (false) {} else {
 
     function slide (action, target, duration) {
 
-        addStyle();
+        return new Promise(function (resolve) { return requestAnimationFrame(function () {
+                addStyle();
 
-        var nodes = children(target);
+                var nodes = children(target);
 
-        // Get current state
-        var currentProps = nodes.map(function (el) { return getProps(el, true); });
-        var oldHeight = height(target);
+                // Get current state
+                var currentProps = nodes.map(function (el) { return getProps(el, true); });
+                var oldHeight = height(target);
 
-        // Cancel previous animations
-        Transition.cancel(target);
-        nodes.forEach(Transition.cancel);
-        removeClass(target, targetClass);
-        reset(target);
+                // Cancel previous animations
+                Transition.cancel(target);
+                nodes.forEach(Transition.cancel);
+                removeClass(target, targetClass);
+                reset(target);
 
-        // Adding, sorting, removing nodes
-        action();
+                // Adding, sorting, removing nodes
+                action();
 
-        // Find new nodes
-        nodes = nodes.concat(children(target).filter(function (el) { return !includes(nodes, el); }));
+                // Find new nodes
+                nodes = nodes.concat(children(target).filter(function (el) { return !includes(nodes, el); }));
 
-        // Wait for update to propagate
-        return Promise.resolve().then(function () {
+                // Wait for update to propagate
+                Promise.resolve().then(function () {
 
-            // Force update
-            fastdom.flush();
+                    // Force update
+                    fastdom.flush();
 
-            // Get new state
-            var newHeight = height(target);
-            var ref = getTransitionProps(target, nodes, currentProps);
-            var propsTo = ref[0];
-            var propsFrom = ref[1];
+                    // Get new state
+                    var newHeight = height(target);
+                    var ref = getTransitionProps(target, nodes, currentProps);
+                    var propsTo = ref[0];
+                    var propsFrom = ref[1];
 
-            // Reset to previous state
-            addClass(target, targetClass);
-            nodes.forEach(function (el, i) { return propsFrom[i] && css(el, propsFrom[i]); });
-            css(target, {height: oldHeight, display: 'block'});
+                    // Reset to previous state
+                    addClass(target, targetClass);
+                    nodes.forEach(function (el, i) { return propsFrom[i] && css(el, propsFrom[i]); });
+                    css(target, {height: oldHeight, display: 'block'});
 
-            // Start transitions on next frame
-            return new Promise(function (resolve) { return requestAnimationFrame(function () {
+                    // Start transitions on next frame
+                    requestAnimationFrame(function () {
 
-                    var transitions = nodes.map(function (el, i) { return Transition.start(el, propsTo[i], duration, 'ease'); }
-                        ).concat(Transition.start(target, {height: newHeight}, duration, 'ease'));
+                        var transitions = nodes.map(function (el, i) { return parent(el) === target && Transition.start(el, propsTo[i], duration, 'ease'); }
+                            ).concat(Transition.start(target, {height: newHeight}, duration, 'ease'));
 
-                    Promise.all(transitions).then(function () {
-                        nodes.forEach(function (el, i) { return css(el, 'display', propsTo[i].opacity === 0 ? 'none' : ''); });
-                        reset(target);
-                    }, noop).then(resolve);
+                        Promise.all(transitions).then(function () {
+                            nodes.forEach(function (el, i) { return parent(el) === target && css(el, 'display', propsTo[i].opacity === 0 ? 'none' : ''); });
+                            reset(target);
+                        }, noop).then(resolve);
 
-                }); }
-            );
-        });
+                    });
+                });
+            }); });
     }
 
     function getProps(el, opacity) {
@@ -43555,6 +43606,7 @@ if (false) {} else {
         methods: {
 
             animate: function(action, target) {
+                var this$1 = this;
                 if ( target === void 0 ) target = this.$el;
 
 
@@ -43571,7 +43623,7 @@ if (false) {} else {
                         : slide;
 
                 return animationFn(action, target, this.duration)
-                    .then(function () { return trigger(toWindow(target), 'resize'); }, noop);
+                    .then(function () { return this$1.$update(target, 'resize'); }, noop);
             }
         }
     };
@@ -45415,9 +45467,7 @@ if (false) {} else {
                 var this$1 = this;
 
 
-                data.active = this.matchMedia;
-
-                if (!data.active) {
+                if (!this.matchMedia) {
                     return;
                 }
 
@@ -45481,10 +45531,9 @@ if (false) {} else {
 
             write: function(ref) {
                 var dim = ref.dim;
-                var active = ref.active;
 
 
-                if (!active) {
+                if (!this.matchMedia) {
                     css(this.$el, {backgroundSize: '', backgroundRepeat: ''});
                     return;
                 }
@@ -45665,16 +45714,15 @@ if (false) {} else {
 
         update: {
 
-            read: function(ref, type) {
+            read: function(ref, types) {
                 var percent = ref.percent;
-                var active = ref.active;
 
 
-                if (type !== 'scroll') {
+                if (!types.has('scroll')) {
                     percent = false;
                 }
 
-                if (!active) {
+                if (!this.matchMedia) {
                     return;
                 }
 
@@ -45689,10 +45737,9 @@ if (false) {} else {
 
             write: function(ref) {
                 var style = ref.style;
-                var active = ref.active;
 
 
-                if (!active) {
+                if (!this.matchMedia) {
                     this.reset();
                     return;
                 }
@@ -46522,7 +46569,7 @@ if (false) {} else {
 
         update: {
 
-            write: function() {
+            write: function(data) {
 
                 if (!this.drag || !parent(this.placeholder)) {
                     return;
@@ -46560,16 +46607,27 @@ if (false) {} else {
                     return;
                 }
 
-                this.touched.add(sortable);
-
                 var previous = this.getSortable(placeholder);
+                var insertTarget = findInsertTarget(sortable.target, target, placeholder, x, y, sortable === previous && data.moved !== target);
+
+                if (insertTarget === false) {
+                    return;
+                }
+
+                if (insertTarget && placeholder === insertTarget) {
+                    return;
+                }
 
                 if (sortable !== previous) {
                     previous.remove(placeholder);
+                    data.moved = target;
+                } else {
+                    delete data.moved;
                 }
 
-                sortable.insert(placeholder, findInsertTarget(sortable.target, target, placeholder, x, y));
+                sortable.insert(placeholder, insertTarget);
 
+                this.touched.add(sortable);
             },
 
             events: ['move']
@@ -46688,10 +46746,6 @@ if (false) {} else {
                 var this$1 = this;
 
 
-                if (target && (element === target || element === target.previousElementSibling)) {
-                    return;
-                }
-
                 addClass(this.items, this.clsItem);
 
                 var insert = function () { return target
@@ -46799,54 +46853,78 @@ if (false) {} else {
         return items[findIndex(items, function (item) { return pointInRect(point, item.getBoundingClientRect()); })];
     }
 
-    function findInsertTarget(list, target, placeholder, x, y) {
+    function findInsertTarget(list, target, placeholder, x, y, sameList) {
 
-        var items = children(list);
-
-        if (!items.length) {
+        if (!children(list).length) {
             return;
         }
 
-        var single = items.length === 1;
+        var rect = target.getBoundingClientRect();
+        if (!sameList) {
+
+            if (!isHorizontal(list, placeholder)) {
+                return y < rect.top + rect.height / 2
+                    ? target
+                    : target.nextElementSibling;
+            }
+
+            return target;
+        }
+
+        var placeholderRect = placeholder.getBoundingClientRect();
+        var sameRow = linesIntersect(
+            [rect.top, rect.bottom],
+            [placeholderRect.top, placeholderRect.bottom]
+        );
+
+        var pointerPos = sameRow ? x : y;
+        var lengthProp = sameRow ? 'width' : 'height';
+        var startProp = sameRow ? 'left' : 'top';
+        var endProp = sameRow ? 'right' : 'bottom';
+
+        var diff = placeholderRect[lengthProp] < rect[lengthProp] ? rect[lengthProp] - placeholderRect[lengthProp] : 0;
+
+        if (placeholderRect[startProp] < rect[startProp]) {
+
+            if (diff && pointerPos < rect[startProp] + diff) {
+                return false;
+            }
+
+            return target.nextElementSibling;
+        }
+
+        if (diff && pointerPos > rect[endProp] - diff) {
+            return false;
+        }
+
+        return target;
+    }
+
+    function isHorizontal(list, placeholder) {
+
+        var single = children(list).length === 1;
 
         if (single) {
             append(list, placeholder);
         }
 
-        var horizontal = isHorizontal(children(list));
+        var items = children(list);
+        var isHorizontal = items.some(function (el, i) {
+            var rectA = el.getBoundingClientRect();
+            return items.slice(i + 1).some(function (el) {
+                var rectB = el.getBoundingClientRect();
+                return !linesIntersect([rectA.left, rectA.right], [rectB.left, rectB.right]);
+            });
+        });
 
         if (single) {
             remove(placeholder);
         }
 
-        var rect = target.getBoundingClientRect();
-        if (!horizontal) {
-            return y < rect.top + rect.height / 2
-                ? target
-                : target.nextElementSibling;
-        }
-
-        var placeholderRect = placeholder.getBoundingClientRect();
-        var sameLine = intersectLine(
-            [rect.top, rect.bottom],
-            [placeholderRect.top, placeholderRect.bottom]
-        );
-        return sameLine && x > rect.left + rect.width / 2 || !sameLine && placeholderRect.top < rect.top
-            ? target.nextElementSibling
-            : target;
+        return isHorizontal;
     }
 
-    function isHorizontal(items) {
-        return items.some(function (el, i) {
-            var rectA = el.getBoundingClientRect();
-            return items.slice(i + 1).some(function (el) {
-                var rectB = el.getBoundingClientRect();
-                return !intersectLine([rectA.left, rectA.right], [rectB.left, rectB.right]);
-            });
-        });
-    }
-
-    function intersectLine(lineA, lineB) {
+    function linesIntersect(lineA, lineB) {
         return lineA[1] > lineB[0] && lineB[1] > lineA[0];
     }
 
@@ -46895,7 +46973,8 @@ if (false) {} else {
                     return;
                 }
 
-                this._unbind = once(document, 'show keydown', this.hide, false, function (e) { return e.type === 'keydown' && e.keyCode === 27
+                this._unbind = once(document, ("show keydown " + pointerDown), this.hide, false, function (e) { return e.type === pointerDown && !within(e.target, this$1.$el)
+                    || e.type === 'keydown' && e.keyCode === 27
                     || e.type === 'show' && e.detail[0] !== this$1 && e.detail[0].$name === this$1.$name; }
                 );
 
@@ -46962,12 +47041,13 @@ if (false) {} else {
             blur: 'hide'
 
         }, obj$1[(pointerEnter + " " + pointerLeave)] = function (e) {
-                if (isTouch(e)) {
-                    return;
+                if (!isTouch(e)) {
+                    this[e.type === pointerEnter ? 'show' : 'hide']();
                 }
-                e.type === pointerEnter
-                    ? this.show()
-                    : this.hide();
+            }, obj$1[pointerDown] = function (e) {
+                if (isTouch(e)) {
+                    this.show();
+                }
             }, obj$1 )
 
     };

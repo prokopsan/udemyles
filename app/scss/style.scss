@@ -22,6 +22,7 @@ iframe {
    padding: 12px;
    height: $panel_height;
    border-bottom: 1px solid black;
+   background: linear-gradient(45deg, #37ecba, #72afd3);
 }
 
 .spinner {
@@ -70,4 +71,12 @@ iframe {
       color: red;
       margin-top: 10px;
    }
+}
+.uk-button-default {
+   border-radius: 20px !important;
+   color: #1e87f0;
+   border: 1px solid #1e87f0;
+}
+.uk-button-primary {
+   border-radius: 20px !important;
 }
