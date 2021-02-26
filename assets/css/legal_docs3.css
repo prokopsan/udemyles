@@ -1,0 +1,50 @@
+body {
+   background-color: #eeeeee;
+   margin: 10px;
+}
+
+td,
+body {
+   font-family: verdana;
+   font-size: 10px;
+   color: #000000;
+}
+
+a {
+   font-family: verdana;
+   font-size: 10px;
+   color: #cc0000;
+}
+
+h1 {
+   font-size: 14px;
+   margin: 0 0 10px;
+   padding: 0;
+}
+
+h2 {
+   font-size: 12px;
+   margin: 5px 0 0;
+}
+
+h3 {
+   font-size: 11px;
+   margin: 5px 0 0;
+}
+
+p {
+   padding: 0 0 5px;
+   margin: 0;
+}
+
+ul {
+   padding: 0px 0px 0px 15px;
+   list-style: disc outside none;
+   margin: 5px 0px;
+}
+
+ol {
+   list-style: decimal inside none;
+   padding: 0px;
+   margin: 5px 0px;
+}
